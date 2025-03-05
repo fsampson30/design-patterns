@@ -36,7 +36,7 @@ public class ClienteServiceImpl implements ClienteService {
     public void updateClient(Long id, Client client) {
         Optional<Client> clientFound = clientRepository.findById(id);
         if (clientFound.isPresent()) {
-          clientRepository.save(client);
+            clientRepository.save(client);
         }
     }
 

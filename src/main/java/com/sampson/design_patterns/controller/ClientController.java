@@ -4,12 +4,11 @@ import com.sampson.design_patterns.model.Client;
 import com.sampson.design_patterns.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/clients")
@@ -32,6 +31,26 @@ public class ClientController {
     @Operation(summary = "Get client by ID", description = "Fetch client by ID")
     public Client findById(@PathVariable Long id){
         return clienteService.findById(id).get();
+    }
+
+    @PostMapping
+    @Operation(summary = "Save a new client", description = "Save a new client")
+    public Client save (@RequestBody Client client){
+        clienteService.insertClient(client);
+        return client;
+    }
+
+    @PutMapping
+    @Operation(summary = "Update a client", description = "Update a client")
+    public Client update(@RequestBody Client client){
+        clienteService.updateClient(client.getId(), client);
+        return client;
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a client", description = "Delete a client")
+    public void delete(@PathVariable Long id){
+        clienteService.deleteClient(id);
     }
 
 
