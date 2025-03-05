@@ -5,6 +5,7 @@ import com.sampson.design_patterns.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +27,13 @@ public class ClientController {
     public List<Client> findAll(){
         return clienteService.findALl();
     }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get client by ID", description = "Fetch client by ID")
+    public Client findById(@PathVariable Long id){
+        return clienteService.findById(id).get();
+    }
+
+
 
 }
