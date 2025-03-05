@@ -4,6 +4,7 @@ import com.sampson.design_patterns.model.Client;
 import com.sampson.design_patterns.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,8 +50,9 @@ public class ClientController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a client", description = "Delete a client")
-    public void delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         clienteService.deleteClient(id);
+        return ResponseEntity.ok().build();
     }
 
 
