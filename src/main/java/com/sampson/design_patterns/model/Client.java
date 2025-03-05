@@ -1,9 +1,6 @@
 package com.sampson.design_patterns.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -11,12 +8,13 @@ import java.time.LocalDateTime;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private LocalDateTime insertDate;
 
-
+    @ManyToOne
+    private Address address;
 
     public Client() {
     }
@@ -43,5 +41,13 @@ public class Client {
 
     public void setInsertDate(LocalDateTime insertDate) {
         this.insertDate = insertDate;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

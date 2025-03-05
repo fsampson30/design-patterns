@@ -5,7 +5,7 @@ import com.sampson.design_patterns.model.Client;
 import java.util.List;
 import java.util.Optional;
 
-public interface ClienteService {
+public interface ClientService {
 
     List<Client> findALl();
 
